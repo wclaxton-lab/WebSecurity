@@ -1,0 +1,24 @@
+{
+  "content": {
+    "urls": [
+      {
+        "description": "Support Ticket: 53ec6ce0-bbfe-84ce-3385-655517037df1, Last Modified: 2023-11-15T19:10:00+01:00",
+        "url": "www.888.com/",
+        "enabled": "true"
+      },
+      {
+        "description": "Support Ticket: 847cd2fe-37a5-1c63-181c-6318ba2d2b5e, Last Modified: 2022-09-13T13:33:00+02:00",
+        "url": "gambling.com/",
+        "enabled": "true"
+      },
+      {
+        "description": "Support Ticket: 8f48a656-f423-32cf-497d-63ff408e4917, Last Modified: 2023-03-01T12:12:00+01:00",
+        "url": "www.poker.com/",
+        "enabled": "true"
+      }
+    ]
+  },
+  "schemaVersion": "1:0",
+  "contentType": "CUSTOM_CATEGORY",
+  "changeDescription": "Ticket System Updated List"
+}
