@@ -100,6 +100,10 @@ done
        MCAPIURL="https://$DEVICE/api/jobs/$UUID/run"
      ;;
    esac
+if [  -z "$OUTPUT" ]
+then
+ OUTPUT=temp.out
+fi
 
 
 status_code=$(curl --write-out '%{http_code}' -s --output $OUTPUT --data-binary "@$INPUT"  -k -H "X-Auth-Token: $APIKEY" -H "Content-Type: application/json" -X $METHOD $MCAPIURL )
