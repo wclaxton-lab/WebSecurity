@@ -105,7 +105,8 @@ done
 status_code=$(curl --write-out '%{http_code}' -v --output $OUTPUT --data-binary "@$INPUT"  -k -H "X-Auth-Token: $APIKEY" -H "Content-Type: application/json" -X $METHOD $MCAPIURL )
 
 
-if [[ "$status_code" -ne 200 ]] ; then
+if [ "$status_code" -ne 200 ] 
+then
   echo "Issue with request - status code = $status_code"
   exit 1
 fi
