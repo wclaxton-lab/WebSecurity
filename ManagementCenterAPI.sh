@@ -102,7 +102,7 @@ done
    esac
 
 
-status_code=$(curl --write-out '%{http_code}' -v --output $OUTPUT --data-binary "@$INPUT"  -k -H "X-Auth-Token: $APIKEY" -H "Content-Type: application/json" -X $METHOD $MCAPIURL )
+status_code=$(curl --write-out '%{http_code}' -s --output $OUTPUT --data-binary "@$INPUT"  -k -H "X-Auth-Token: $APIKEY" -H "Content-Type: application/json" -X $METHOD $MCAPIURL )
 
 
 if [ "$status_code" -ne 200 ] 
