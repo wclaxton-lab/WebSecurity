@@ -74,8 +74,8 @@ done
            fi
            MCAPIURL="https://$DEVICE/api/policies/$UUID/content"
          ;;
-         *) 
-           echo "Function not supported for this Type"
+         *)
+           echo "Function not support for this Type"
            exit 1
           ;;
       esac
@@ -92,32 +92,32 @@ done
            INPUT=""
            MCAPIURL="https://$DEVICE/api/jobs/$UUID/run"
          ;;
-         *) 
-           echo "Function not supported for this Type"
+         *)
+           echo "Function not support for this Type"
            exit 1
           ;;
       esac
       ;;
-    *) 
+    *)
      echo "Type not supported"
      exit 1
     ;;
    esac
-   
+
 if [  -z "$OUTPUT" ]
 then
  OUTPUT=temp.out
 fi
-  
 
-     
+
+
 
 
 
 status_code=$(curl --write-out '%{http_code}' -s --output $OUTPUT --data-binary "@$INPUT"  -k -H "X-Auth-Token: $APIKEY" -H "Content-Type: application/json" -X $METHOD $MCAPIURL )
 
 
-if [ "$status_code" -ne 200 ] 
+if [ "$status_code" -ne 200 ]
 then
   echo "Issue with request - status code = $status_code"
   exit 1
