@@ -57,53 +57,61 @@ while getopts ":u:d:a:o:i:f:t:h" option; do
    esac
 done
 
-    case $FUNCTION in
-      VIEW)
-        METHOD="GET"
-        if [ "$TYPE" = "JOB" ]
-         then
-          echo "only support run on job"
-          exit 1
-        fi
-        INPUT=""
-        ;;
-      UPDATE)
-        METHOD="POST"
-         if [  -z "$INPUT" ]
-         then
-           echo "Need to specify input file for update, use the -i option."
-           exit 1
-         fi
-         if [ "$TYPE" = "JOB" ]
-         then
-          echo "only support run on job"
-          exit 1
-        fi
-         ;;
-      RUN)
-        if [ "$TYPE" = "POLICY" ]
-         then
-          echo "only support run on job"
-          exit 1
-        fi
-
-        METHOD="POST"
-        INPUT="";;
-    esac
-
-
    case $TYPE in
      POLICY)
-       MCAPIURL="https://$DEVICE/api/policies/$UUID/content"
-     ;;
+       case $FUNCTION in
+         VIEW)
+           METHOD="GET"
+           INPUT=""
+           MCAPIURL="https://$DEVICE/api/policies/$UUID/content"
+           ;;
+         UPDATE)
+           METHOD="POST"
+           if [  -z "$INPUT" ]
+            then
+             echo "Need to specify input file for update, use the -i option."
+            exit 1
+           fi
+           MCAPIURL="https://$DEVICE/api/policies/$UUID/content"
+         ;;
+         *) 
+           echo "Function not supported for this Type"
+           exit 1
+          ;;
+      esac
+       ;;
      JOB)
-       MCAPIURL="https://$DEVICE/api/jobs/$UUID/run"
-     ;;
+       case $FUNCTION in
+         VIEW)
+           METHOD="GET"
+           INPUT=""
+           MCAPIURL="https://$DEVICE/api/jobs/$UUID/result"
+           ;;
+         RUN)
+           METHOD="POST"
+           INPUT=""
+           MCAPIURL="https://$DEVICE/api/jobs/$UUID/run"
+         ;;
+         *) 
+           echo "Function not supported for this Type"
+           exit 1
+          ;;
+      esac
+      ;;
+    *) 
+     echo "Type not supported"
+     exit 1
+    ;;
    esac
+   
 if [  -z "$OUTPUT" ]
 then
  OUTPUT=temp.out
 fi
+  
+
+     
+
 
 
 status_code=$(curl --write-out '%{http_code}' -s --output $OUTPUT --data-binary "@$INPUT"  -k -H "X-Auth-Token: $APIKEY" -H "Content-Type: application/json" -X $METHOD $MCAPIURL )
