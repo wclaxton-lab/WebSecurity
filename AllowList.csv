@@ -6,3 +6,4 @@ true,www.test.co.uk,test3
 true,www.now.co.uk,test4
 true,www.testingmore.com,this is a test from github
 true,www.letsee.com,this is a test from github webhooks
+false,www.notme.com,this should be disabled from github webhook
