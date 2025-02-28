@@ -2,4 +2,8 @@ enabled,url,description
 true,www.888.com,test
 true,www.verybad.com,test1
 true,www.now.com,testgithook
-true,www.now.com,testgithook
+true,www.now1.com,testgithook
+true,www.now2.com,testgithook
+true,www.now3.com,testgithook
+true,www.now4.com,testgithook
+true,www.now5.com,testgithook
