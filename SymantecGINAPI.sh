@@ -10,7 +10,7 @@ OUTPUTFILE=gin.temp
 
 TOKEN=`curl -s --location --request POST 'https://api.sep.securitycloud.symantec.com/v1/oauth2/tokens' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
---header 'Authorization: Basic $GINBEARER'| cut -d "\"" -f4 `
+--header "Authorization: Basic $GINBEARER"| cut -d "\"" -f4 `
 
 TEXURL="https://api.sep.securitycloud.symantec.com/v1/threat-intel/insight/network/$URL"
 AUTH="Authorization: Bearer "$TOKEN
