@@ -4,15 +4,13 @@ if [ $# -eq 0 ] ; then
     exit 0
 fi
 
-TICKETURL=$1
+URL=$1
 
 TOKEN=`curl -s --location --request POST 'https://api.sep.securitycloud.symantec.com/v1/oauth2/tokens' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
 --header 'Authorization: Basic $GINBEARER'| cut -d "\"" -f4 `
 
-echo Getting Symantec Threat Intelligence for $TICKETURL
-
-TEXURL="https://api.sep.securitycloud.symantec.com/v1/threat-intel/insight/network/$TICKETURL"
+TEXURL="https://api.sep.securitycloud.symantec.com/v1/threat-intel/insight/network/$URL"
 AUTH="Authorization: Bearer "$TOKEN
 RESP=`curl -s --location --request GET "$TEXURL" --header "$AUTH" `
 URL=`echo $RESP | jq --raw-output 'try .network'`
