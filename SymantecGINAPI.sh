@@ -1,10 +1,12 @@
-#/usr/bin/sh
+#/bin/bash
 if [ $# -eq 0 ] ; then
     echo 'Usage: URL'
     exit 0
 fi
 
 URL=$1
+OUTPUTFILE=gin.temp
+>$OUTPUTFILE
 
 TOKEN=`curl -s --location --request POST 'https://api.sep.securitycloud.symantec.com/v1/oauth2/tokens' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
@@ -12,7 +14,16 @@ TOKEN=`curl -s --location --request POST 'https://api.sep.securitycloud.symantec
 
 TEXURL="https://api.sep.securitycloud.symantec.com/v1/threat-intel/insight/network/$URL"
 AUTH="Authorization: Bearer "$TOKEN
-RESP=`curl -s --location --request GET "$TEXURL" --header "$AUTH" `
+
+status_code=$(curl --write-out '%{http_code}' -s --output $OUTPUTFILE --location --request GET "$TEXURL" --header "$AUTH")
+
+if [ "$status_code" -ne 200 ]
+then
+  echo "Issue with request - status code = $status_code"
+  exit 1
+fi
+
+RESP=`cat $OUTPUTFILE`
 URL=`echo $RESP | jq --raw-output 'try .network'`
 TR=`echo $RESP | jq --raw-output 'try .threatRiskLevel.level'`
 CAT=`echo $RESP | jq --raw-output 'try .categorization.categories[].name' |sed -n -e 'H;${x;s/\n/,/g;s/^,//;p;}'`
