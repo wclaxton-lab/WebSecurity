@@ -1,14 +1,6 @@
 define condition TestGroup
 	realm=local group="Test_User_Group"
-	realm=local group="Test_User_Group"
-	realm=local group="Test_User_Group"
-	realm=local group="Test_User_Group"
-	realm=local group="Test_User_Group"
-	realm=local group="Test_User_Group"
-	realm=local group="Test_User_Group"
-	realm=local group="Test_User_Group"
-	realm=local group="Test_User_Group"
-	realm=local group="Test_User_Group"
+	realm=local group="Test_User_Group1"
 end condition TestGroup
 
 <Proxy>
