@@ -8,7 +8,7 @@ TICKETURL=$1
 
 TOKEN=`curl -s --location --request POST 'https://api.sep.securitycloud.symantec.com/v1/oauth2/tokens' \
 --header 'Content-Type: application/x-www-form-urlencoded' \
---header 'Authorization: Basic TzJJRC45aDdnUUo4ZFN4NkFTNUd4M1V6UkZRLmFjSzh6WWpxVEh1VFVyT3ctcFlIYVEuZWtxaWhjMzI1MDkxMTVwbmJwaGp1M243bWM6bTM1dmhoYmJidTdrZGRhcTB1a2hubW1mdTg0bTRodTlvM20='| cut -d "\"" -f4 `
+--header 'Authorization: Basic $GINBEARER'| cut -d "\"" -f4 `
 
 echo Getting Symantec Threat Intelligence for $TICKETURL
 
