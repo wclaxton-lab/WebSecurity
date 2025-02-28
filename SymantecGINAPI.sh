@@ -28,6 +28,4 @@ LS=`echo $RESP | jq --raw-output 'try .lastSeen'`
 
 TEXT="URL: $URL&#13;&#10;Threat Risk: $TR&#13;&#10;Categorie(s): $CAT&#13;&#10;Reputation: $REP&#13;&#10;Prevalence: $PRE&#13;&#10;First Seen: $FS&#13;&#10;Last Seen: $LS&#13;&#10;Target Top Countries: $TOPCNT&#13;&#10;Target Top Industries: $TOPIND&#13;&#10;Actors: $ACT&#13;&#10;"
 
-
-JSON='{ "data": { "type": "Case", "id": "'$TICKETID'", "attributes": { "symantecthreatintelligence_c": "'$TEXT'" }    } }'
-echo $JSON
+echo $TEXT
