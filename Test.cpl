@@ -1,6 +1,6 @@
 define condition TestGroup
-	realm=local group="Test_User_Group"
-	realm=local group="Test_User_Group1"
+	realm=local group="Test_User_Group7"
+	realm=local group="Test_User_Group8"
 end condition TestGroup
 
 <Proxy>
